@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
+
 apply from: rootProject.file('dependencies.gradle')
 
 android {
@@ -40,9 +41,15 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
         freeCompilerArgs = freeCompilerArgs + "-Xallow-result-return-type"
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$rootProject.kotlin_version"
     //region Navigation dependencies
     implementation libraries.navigationFragment
     implementation libraries.navigationUI
@@ -63,7 +70,6 @@ dependencies {
     implementation libraries.liveData
     implementation libraries.viewModel
     implementation libraries.appcompat
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     coreLibraryDesugaring libraries.desugaring
     //endregion core
     //region Database (Room)
