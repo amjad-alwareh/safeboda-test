@@ -25,10 +25,15 @@ data class DataResult<out T>(val status: Status, val data: T?, val message: Stri
             return DataResult(Status.LOADING, null, message = null)
         }
 
+        fun <T> none(): DataResult<T> {
+            return DataResult(Status.NONE, null, message = null)
+        }
+
     }
 }
 
 enum class Status {
+    NONE,
     LOADING,
     ERROR,
     SUCCESS
