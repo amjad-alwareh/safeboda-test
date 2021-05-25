@@ -1,0 +1,125 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-kapt'
+apply from: rootProject.file('dependencies.gradle')
+
+android {
+
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.safeboda.test"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    testOptions {
+        animationsDisabled = true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        coreLibraryDesugaringEnabled true
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+        freeCompilerArgs = freeCompilerArgs + "-Xallow-result-return-type"
+    }
+}
+
+dependencies {
+    //region Navigation dependencies
+    implementation libraries.navigationFragment
+    implementation libraries.navigationUI
+    //endregion Navigation dependencies
+    //region API dependencies
+    implementation libraries.retrofit
+    implementation libraries.retrofitConverter
+    implementation libraries.okhttp
+    implementation libraries.okhttpLogger
+    //endregion API dependencies
+    //region core
+    implementation libraries.kotlin
+    implementation libraries.coroutinesCore
+    implementation libraries.coroutinesAndroid
+    implementation libraries.core
+    implementation libraries.gson
+    implementation libraries.lifecycle
+    implementation libraries.liveData
+    implementation libraries.viewModel
+    implementation libraries.appcompat
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    coreLibraryDesugaring libraries.desugaring
+    //endregion core
+    //region Database (Room)
+    implementation libraries.roomKtx
+    kapt libraries.roomCompiler
+    implementation libraries.room
+    //endregion Database (Room)
+    //region Dependency Injection DI
+    implementation libraries.hilt
+    kapt libraries.hiltCompiler
+    //endregion Dependency Injection DI
+    //region Image Loader (Glide)
+    annotationProcessor libraries.glideAnnotationProcess
+    implementation libraries.glide
+    //endregion Image Loader (Glide)
+    //region other dependencies
+    implementation libraries.activity
+    implementation libraries.fragment
+    implementation libraries.material
+    implementation libraries.constraintLayout
+    implementation libraries.recyclerview
+    implementation libraries.viewPager2
+    implementation libraries.dataStore
+    //endregion other dependencies
+    //region testing
+    implementation libraries.espressoIdling
+    testImplementation libraries.junit
+    androidTestImplementation libraries.coreTest
+    androidTestImplementation libraries.testRunner
+    androidTestImplementation libraries.testRule
+    androidTestImplementation libraries.coroutinesTest
+    testImplementation libraries.coreTest
+    androidTestImplementation libraries.espressoCore
+    androidTestImplementation libraries.espressoContrib
+    androidTestImplementation libraries.espressoIntents
+    androidTestImplementation libraries.espressoConcurrent
+    androidTestImplementation libraries.testRule
+    androidTestImplementation libraries.coreTest
+    testImplementation libraries.coroutinesTest
+    testImplementation libraries.testRule
+    androidTestImplementation libraries.hiltTest
+    kaptAndroidTest libraries.hiltAndroidTest
+    kaptAndroidTest libraries.hiltCompilerTest
+    testImplementation libraries.junitKtx
+    androidTestImplementation libraries.junitKtx
+    androidTestImplementation libraries.roomTest
+    debugImplementation libraries.fragmentTest
+    testImplementation libraries.coreArchTest
+    androidTestImplementation libraries.coreArchTest
+    testImplementation libraries.mockitoKotlin
+    testImplementation libraries.mockitoInline
+    androidTestImplementation libraries.mockitoCore
+    androidTestImplementation libraries.mockitoDex
+    androidTestImplementation libraries.uiautomator
+    androidTestImplementation(libraries.barista) {
+        exclude group: 'org.jetbrains.kotlin'
+    }
+    //endregion testing
+}

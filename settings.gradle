@@ -1,0 +1,2 @@
+rootProject.name = "SafeBoda Test"
+include ':app'
