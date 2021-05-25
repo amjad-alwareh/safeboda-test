@@ -1,4 +1,4 @@
-package com.safeboda.test
+package com.safeboda.test.core
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

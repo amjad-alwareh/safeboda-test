@@ -5,7 +5,7 @@ import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.safeboda.test.databinding.ActivitySplashBinding
-import com.safeboda.test.newMainActivityIntent
+import com.safeboda.test.main.presntation.ui.newMainActivityIntent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -31,4 +31,5 @@ class SplashActivity : AppCompatActivity() {
             finish()
         }
     }
+
 }

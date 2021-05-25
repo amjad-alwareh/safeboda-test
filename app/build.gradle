@@ -2,8 +2,12 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 apply from: rootProject.file('dependencies.gradle')
+
+def apiGitHub = "\"https://api.github.com/\""
+def apiSearchUser = "\"users/{username}\""
 
 android {
 
@@ -18,6 +22,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_BASE_URL", apiGitHub
+        buildConfigField "String", "API_SEARCH_USER", apiSearchUser
     }
 
     testOptions {
