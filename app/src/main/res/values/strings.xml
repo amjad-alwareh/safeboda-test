@@ -5,4 +5,9 @@
     <string name="user_not_found">User not found: 404</string>
     <string name="wrong">Something went wrong</string>
     <string name="type_name_first">Type a username first</string>
+    <string name="repos">repos: %1$d</string>
+    <string name="gists">gists: %1$d</string>
+    <string name="following">Following: %1$d</string>
+    <string name="follower">Follower: %1$d</string>
+    <string name="login">/%1$s</string>
 </resources>

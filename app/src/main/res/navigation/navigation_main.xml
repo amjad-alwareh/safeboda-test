@@ -16,9 +16,10 @@
             app:destination="@+id/userFragment">
 
             <argument
-                android:name="UserId"
-                android:defaultValue="0"
-                app:argType="integer" />
+                android:name="USER"
+                android:defaultValue="@null"
+                app:argType="com.safeboda.test.user.data.model.User"
+                app:nullable="true" />
 
         </action>
 
