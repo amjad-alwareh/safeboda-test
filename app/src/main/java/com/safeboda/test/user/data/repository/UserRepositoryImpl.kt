@@ -1,11 +1,9 @@
 package com.safeboda.test.user.data.repository
 
-import com.safeboda.test.core.exception.NotFoundException
 import com.safeboda.test.user.data.local.source.UserLocalDataSource
 import com.safeboda.test.user.data.remote.source.UserRemoteDataSource
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
-import java.net.HttpURLConnection
 import javax.inject.Inject
 
 class UserRepositoryImpl @Inject constructor(
@@ -25,19 +23,9 @@ class UserRepositoryImpl @Inject constructor(
         } else {
             val remoteResponse = remote.searchUser(username)
 
-            if (remoteResponse.code() == HttpURLConnection.HTTP_NOT_FOUND) {
-                emit(Result.failure(NotFoundException()))
-                return@flow
-            }
+            val insertResult = local.insertUser(remoteResponse!!)
 
-            if (!remoteResponse.isSuccessful) {
-                emit(Result.failure(Exception("An Error Occurred")))
-                return@flow
-            }
-
-            val user = remoteResponse.body()
-            val insertResult = local.insertUser(user!!)
-            emit(Result.success(user))
+            emit(Result.success(remoteResponse))
 
         }
     }.catch {
